@@ -10,12 +10,12 @@ type Deal struct {
 }
 
 type Deals struct {
-	Deals []Company `json:"deals"`
+	Deals []*Deal `json:"deals"`
 }
 
-func (s *DealsService) GetAll() (*Deals, error) {
+func (s *DealsService) GetAll() ([]*Deal, error) {
 	url := "/deals/v1/deal/paged"
 	all := new(Deals)
 	err := s.client.RunGet(url, all)
-	return all, err
+	return all.Deals, err
 }
