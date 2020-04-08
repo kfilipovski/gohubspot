@@ -10,12 +10,12 @@ type Company struct {
 }
 
 type Companies struct {
-	Companies []Company `json:"companies"`
+	Companies []*Company `json:"companies"`
 }
 
-func (s *CompaniesService) GetAll() (*Companies, error) {
+func (s *CompaniesService) GetAll() ([]*Company, error) {
 	url := "/companies/v2/companies/paged"
 	all := new(Companies)
 	err := s.client.RunGet(url, all)
-	return all, err
+	return all.Companies, err
 }
