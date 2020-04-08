@@ -15,6 +15,10 @@ type Contact struct {
 	Properties   Properties `json:"properties"`
 }
 
+type Contacts struct {
+	Contacts []Contact `json:"contacts"`
+}
+
 func (s *ContactsService) Create(properties Properties) (*IdentityProfile, error) {
 	url := "/contacts/v1/contact"
 	res := new(IdentityProfile)
@@ -65,6 +69,20 @@ func (s *ContactsService) Merge(primaryID, secondaryID int) error {
 	}
 
 	return s.client.RunPost(url, secondary, nil)
+}
+
+func (s *ContactsService) GetAll() (*Contacts, error) {
+	url := "/contacts/v1/lists/all/contacts/all"
+	all := new(Contacts)
+	err := s.client.RunGet(url, all)
+	return all, err
+}
+
+func (s *ContactsService) GetById(id int) (*Contact, error) {
+	url := fmt.Sprintf("/contacts/v1/contact/vid/%d/profile", id)
+	res := new(Contact)
+	err := s.client.RunGet(url, res)
+	return res, err
 }
 
 func (s *ContactsService) GetByToken(token string) (*Contact, error) {
