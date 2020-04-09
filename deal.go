@@ -3,10 +3,10 @@ package gohubspot
 type DealsService service
 
 type Deal struct {
-	PortalId   int        `json:"portalId"`
-	DealId     int        `json:"dealId"`
-	IsDeleted  bool       `json:"isDeleted"`
-	Properties Properties `json:"properties"`
+	PortalId   int                 `json:"portalId"`
+	DealId     int                 `json:"dealId"`
+	IsDeleted  bool                `json:"isDeleted"`
+	Properties map[string]Property `json:"properties"`
 }
 
 type Deals struct {

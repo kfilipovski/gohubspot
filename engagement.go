@@ -13,11 +13,11 @@ const (
 )
 
 type Engagement struct {
-	Id         int        `json:"id"`
-	PortalId   int        `json:"portalId"`
-	DealId     int        `json:"dealId"`
-	Active     bool       `json:"active"`
-	Properties Properties `json:"properties"`
+	Id         int                 `json:"id"`
+	PortalId   int                 `json:"portalId"`
+	DealId     int                 `json:"dealId"`
+	Active     bool                `json:"active"`
+	Properties map[string]Property `json:"properties"`
 }
 
 type Engagements struct {

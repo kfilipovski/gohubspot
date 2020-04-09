@@ -3,10 +3,10 @@ package gohubspot
 type CompaniesService service
 
 type Company struct {
-	PortalId   int        `json:"portalId"`
-	CompanyId  int        `json:"companyId"`
-	IsDeleted  bool       `json:"isDeleted"`
-	Properties Properties `json:"properties"`
+	PortalId   int                 `json:"portalId"`
+	CompanyId  int                 `json:"companyId"`
+	IsDeleted  bool                `json:"isDeleted"`
+	Properties map[string]Property `json:"properties"`
 }
 
 type Companies struct {
