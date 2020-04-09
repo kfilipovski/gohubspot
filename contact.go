@@ -1,6 +1,8 @@
 package gohubspot
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type ContactsService service
 
@@ -73,8 +75,23 @@ func (s *ContactsService) Merge(primaryID, secondaryID int) error {
 
 func (s *ContactsService) GetAll() ([]*Contact, error) {
 	url := "/contacts/v1/lists/all/contacts/all"
+
+	req, err := s.client.Get(url)
+	if err != nil {
+		return nil, err
+	}
+
+	query := req.URL.Query()
+	query.Set("propertyMode", "value_only")
+	query.Set("property", "firstname")
+	query.Add("property", "lastname")
+	query.Add("property", "num_notes")
+	query.Add("property", "num_contacted_notes")
+	req.URL.RawQuery = query.Encode()
+
 	all := new(Contacts)
-	err := s.client.RunGet(url, all)
+	err = s.client.Do(req, all)
+
 	return all.Contacts, err
 }
 
