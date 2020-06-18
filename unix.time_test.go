@@ -77,7 +77,7 @@ func TestUnmarshalUnitTime(t *testing.T) {
 		t.Error(err)
 	}
 
-	t.Errorf("time is: %s", model.Time)
+	t.Logf("time is: %s", model.Time)
 }
 
 func checkTime(unixTime *UnixTime) error {

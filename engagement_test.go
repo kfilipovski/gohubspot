@@ -8,8 +8,10 @@ func TestEngagementsService_GetAll(t *testing.T) {
 	setup()
 	defer teardown()
 
-	_, err := testclient.Engagements.GetAll()
+	engagements, err := testclient.Engagements.GetAll()
 	if err != nil {
 		t.Error(err)
 	}
+
+	t.Log(*engagements[1])
 }

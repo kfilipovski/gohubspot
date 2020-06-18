@@ -82,6 +82,7 @@ func (s *ContactsService) GetAll() ([]*Contact, error) {
 	}
 
 	query := req.URL.Query()
+	query.Set("count", "100")
 	query.Set("propertyMode", "value_only")
 	query.Set("property", "firstname")
 	query.Add("property", "lastname")
