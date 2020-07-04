@@ -86,10 +86,13 @@ func (s *ContactsService) GetAll() ([]*Contact, error) {
 	query.Set("propertyMode", "value_only")
 	query.Set("property", "firstname")
 	query.Add("property", "lastname")
+	query.Add("property", "job_title")
 	query.Add("property", "num_notes")
 	query.Add("property", "num_contacted_notes")
 	query.Add("property", "notes_last_updated")
 	query.Add("property", "notes_last_contacted")
+	query.Add("property", "lifecycle_stage")
+	query.Add("property", "lead_status")
 	req.URL.RawQuery = query.Encode()
 
 	all := new(Contacts)
